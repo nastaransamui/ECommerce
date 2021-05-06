@@ -11,6 +11,7 @@ import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import OrderHistoryScreen from "./screens/OrderHistoryScreen";
 function App() {
   const cart = useSelector((state) => state.cart);
   const userSignin = useSelector((state) => state.userSignin);
@@ -44,9 +45,14 @@ function App() {
                   {userInfo.name} <i className="fa fa-caret-down"></i>{" "}
                 </Link>
                 <ul className="dropdown-content">
-                  <Link to="#signout" onClick={signoutHandler}>
-                    Sing out
-                  </Link>
+                <li>
+                    <Link to="/orderhistory">Order History</Link>
+                  </li>
+                  <li>
+                    <Link to="#signout" onClick={signoutHandler}>
+                      Sign Out
+                    </Link>
+                  </li>
                 </ul>
               </div>
             ) : (
@@ -55,15 +61,16 @@ function App() {
           </div>
         </header>
         <main>
-          <Route path="/" component={HomeScreen} exact></Route>
           <Route path="/signin" component={SigninScreen}></Route>
+          <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/register" component={RegisterScreen}></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
           <Route path="/shipping" component={ShippingAddressScreen}></Route>
           <Route path="/payment" component={PaymentMethodScreen}></Route>
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
-          <Route path="/cart/:id?" component={CartScreen}></Route>
+          <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+          <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All right reserved</footer>
       </div>
